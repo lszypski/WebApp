@@ -1,14 +1,20 @@
 pipeline {
     stages {
         stage('Build') {
-            git branch: 'master', url: 'https://github.com/lszypski/WebApp'
-            sh 'mvn clean package -DskipTests'
+            steps {
+                git branch: 'master', url: 'https://github.com/lszypski/WebApp'
+                sh 'mvn clean package -DskipTests'
+            }
         }
         stage('Test') {
-            sh 'mvn test'
+            steps {
+                sh 'mvn test'
+            }
         }
         stage('Deploy') {
-            sh 'java -jar WebApp.jar'
+            steps {
+                sh 'java -jar WebApp.jar'
+            }
         }
     }
 }
