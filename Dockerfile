@@ -5,4 +5,4 @@ RUN mvn clean install
 
 FROM openjdk:17-jdk-slim
 COPY --from=build /tmp/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","app.jar"]
