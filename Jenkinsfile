@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'java -jar WebApp.jar'
+                sh 'java -jar WebApp*'
             }
         }
     }
