@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'master', url: 'https://github.com/lszypski/WebApp'
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'docker build .'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker run --network devops --name webapp -p 9000:9000 -d webapp'
+            }
+        }
+    }
+}
