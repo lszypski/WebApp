@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                docker.build('webapp-image')
+                sh 'docker build .'
             }
         }
         stage('Deploy') {
