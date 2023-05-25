@@ -1,0 +1,17 @@
+name: devops-edu
+services:
+  devops-postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=postgres
+
+  webapp:
+    build: .
+    ports:
+      - 9000:9000
+    depends_on:
+      - devops-postgres
